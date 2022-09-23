@@ -23,14 +23,27 @@ $ source venv/bin/activate
 $ pip install -r requirements.txt
 
 ========================================================================================================================
-Выполнить следующие команды:
+Создание БД
+
+$ sudo su - postgres
+Теперь запускаем командную оболочку PostgreSQL:
+$ psql 
+
+=# CREATE DATABASE django_celery;
+=# CREATE USER portaluser WITH PASSWORD 'myPassword';
+=# GRANT ALL PRIVILEGES ON DATABASE portal TO portaluser;
+=# \q
+$ exit
+
+========================================================================================================================
+Для запуска выполнить следующие команды:
 
 Команда для создания миграций приложения для базы данных
-python3 manage.py makemigrations
-python3 manage.py migrate
+$ python3 manage.py makemigrations
+$ python3 manage.py migrate
 
 Создание суперпользователя
-python3 manage.py createsuperuser
+$ python3 manage.py createsuperuser
 
 Будут выведены следующие выходные данные. Введите требуемое имя пользователя, электронную почту и пароль:
 по умолчанию почта admin@admin.com пароль: 12345
