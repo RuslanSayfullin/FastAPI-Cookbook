@@ -31,7 +31,7 @@ $ psql
 
 =# CREATE DATABASE django_celery;
 =# CREATE USER portaluser WITH PASSWORD 'myPassword';
-=# GRANT ALL PRIVILEGES ON DATABASE portal TO portaluser;
+=# GRANT ALL PRIVILEGES ON DATABASE django_celery TO portaluser;
 =# \q
 $ exit
 
