@@ -14,7 +14,7 @@ $ cd django_celery
 
 ========================================================================================================================
 Создать и активировать виртуальное окружение:
-$ python -m venv venv
+$ python3 -m venv venv
 $ source venv/bin/activate
 (venv) $
 
@@ -77,7 +77,7 @@ Password (again): ********
 Superuser created successfully.
 
 Команда для запуска приложения
-python manage.py runserver
+python3 manage.py runserver
 
 Приложение будет доступно по адресу: http://127.0.0.1:8000/
 
