@@ -13,7 +13,9 @@ SECRET_KEY = secret_key
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '80.78.244.196', 'chiffre.tech', 'localhost']
-INTERNAL_IPS = ('127.0.0.1', '80.78.244.196', 'chiffre.tech', 'localhost')   # кортеж с перечнем IP-адресов, с которых может вестись разработка.
+
+# кортеж с перечнем IP-адресов, с которых может вестись разработка.
+INTERNAL_IPS = ('127.0.0.1', '80.78.244.196', 'chiffre.tech', 'localhost')
 
 
 # Application definition
@@ -112,3 +114,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email placeholder setting
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+# Celery settings
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"

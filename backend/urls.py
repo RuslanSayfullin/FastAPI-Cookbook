@@ -6,7 +6,7 @@ from backend import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', include('feedback.urls')),
+    path('', include('feedback.urls')),
 ]
 
 if settings.DEBUG:
