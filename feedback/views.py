@@ -1,3 +1,17 @@
-from django.shortcuts import render
+from django.views.generic import FormView, TemplateView
 
-# Create your views here.
+from feedback.form import FeedbackForm
+
+
+class FeedbackFormView(FormView):
+    template_name = "feedback/feedback.html"
+    form_class = FeedbackForm
+    success_url = "/success/"
+
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
+
+
+class SuccessView(TemplateView):
+    template_name = "feedback/success.html"
