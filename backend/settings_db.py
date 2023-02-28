@@ -6,7 +6,7 @@ from backend.psw import dbase_psw
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'reckoning',
+        'NAME': 'django_celery',
         'USER': 'portaluser',
         'PASSWORD': dbase_psw,
         'HOST': 'localhost',
