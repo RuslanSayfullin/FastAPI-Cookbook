@@ -78,7 +78,7 @@ Superuser created successfully.
     Затем запустите сервер Redis во втором окне терминала:
         $ redis-server
     Запустите сервер Celery во третьем окне терминала:
-        $ python3 -m celery -A backend worker
+        $ python3 -m celery -A backend worker -l info
         
 
 
