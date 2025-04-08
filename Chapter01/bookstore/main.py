@@ -28,7 +28,7 @@ async def raise_exception():
 # validation error
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(
-    request:Request,
+    request: Request,
     exc: RequestValidationError
 ):
     return PlainTextResponse(
