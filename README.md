@@ -26,4 +26,9 @@ Open the inreactive documentation: http://localhost:8000/docs
 
 # Источник
 ========================================================================================================================
-https://github.com/PacktPublishing/Mastering-Flask-Web-Development
+https://github.com/PacktPublishing/FastAPI-Cookbook
+
+
+Chapter 1, First Steps with FastAPI
+Chapter 2, Working with Data
+Chapter 3, Building RESTful APIs with FastAPI
