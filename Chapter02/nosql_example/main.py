@@ -1,12 +1,14 @@
 from bson import ObjectId
-from fastapi import FastAPI, HTTPException
 from typing import Optional
+
+from fastapi import FastAPI, HTTPException
 from pydantic import (BaseModel,
                     EmailStr,
                     field_validator
                     )
 
 from database import user_collection
+
 
 app = FastAPI()
 
