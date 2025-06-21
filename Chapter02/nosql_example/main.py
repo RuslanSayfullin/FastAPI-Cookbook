@@ -34,6 +34,7 @@ class User(BaseModel):
 def read_users() -> list[User]:
     return [user for user in user_collection.find()]
 
+
 class UserResponse(User):
     id: str
 
@@ -46,7 +47,6 @@ def create_user(user: User):
         id=str(result.inserted_id),
         *user.model_dump()
     )
-
     return user_response
 
 @app.get("/user")
