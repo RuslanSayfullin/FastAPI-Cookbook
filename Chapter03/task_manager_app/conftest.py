@@ -33,7 +33,7 @@ def create_test_database():
         Path(__file__).parent / TEST_DATABASE_FILE
     )
     with patch(
-        "operations.DATABASE_DILENAME",
+        "operations.DATABASE_FILENAME",
         database_file_location,
     ) as csv_test:
         with open(
