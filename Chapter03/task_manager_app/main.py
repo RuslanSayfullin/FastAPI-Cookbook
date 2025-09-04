@@ -3,12 +3,13 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-from models import Task, TaskWithID
+from models import Task, TaskWithID, TaskV2WithID
 from operations import (read_all_tasks,
                          read_task,
                          create_task,
                          modify_task,
-                         remove_task
+                         remove_task,
+                          read_all_tasks_v2
                         )
 
 
@@ -25,6 +26,11 @@ def get_tasks(
         tasks = [
             task for task in tasks if task.status == status
         ]
+    return tasks
+
+@app.get("/v2/tasks", response_model=list[TaskV2WithID])
+def get_tasks_v2():
+    tasks = read_all_tasks_v2()
     return tasks
 
 @app.get("/tasks/{task_id}")
