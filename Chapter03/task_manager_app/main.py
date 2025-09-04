@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
@@ -13,9 +15,16 @@ from operations import (read_all_tasks,
 app = FastAPI()
 
 @app.get("/tasks", response_model=list[TaskWithID])
-def get_tasks():
+def get_tasks(
+    status: Optional[str] = None,
+    title: Optional[str] = None,
+):
     """Return all tasks"""
     tasks = read_all_tasks()
+    if status:
+        tasks = [
+            task for task in tasks if task.status == status
+        ]
     return tasks
 
 @app.get("/tasks/{task_id}")
@@ -27,6 +36,15 @@ def get_task(task_id: int):
             status_code=404, detail="task not found"
         )
     return task
+
+@app.get("/tasks/search", response_model=list[TaskWithID])
+def search_tasks(keyword: str):
+    tasks = read_all_tasks()
+    filtered_tasks = [
+        task for task in tasks if keyword.lower() in (task.title + task.description).lower()
+    ]
+    return filtered_tasks
+
 
 @app.post("/task", response_model=TaskWithID)
 def add_task(task: Task):
