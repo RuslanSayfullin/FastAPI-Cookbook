@@ -7,3 +7,12 @@ class Task(BaseModel):
 
 class TaskWithID(Task):
     id: int
+
+class TaskV2(BaseModel):
+    title: str
+    description: str
+    status: str
+    priority: str | None = "lower"
+
+class TaskV2WIthID(TaskV2):
+    id: int
