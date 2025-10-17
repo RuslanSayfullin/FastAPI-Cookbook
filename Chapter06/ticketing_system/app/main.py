@@ -1,9 +1,13 @@
 from contextlib import asynccontextmanager
+from typing import Annotated
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from database import get_engine, Base
+from database import get_engine, Base, get_db_session
+from operations import create_ticket
 
 
 @asynccontextmanager
@@ -28,3 +32,21 @@ app.add_middleware(
     allow_methods="*",
     allow_headers="*"
 )
+
+class TicketRequest(BaseModel):
+    price: float | None
+    show: str | None
+    user: str | None = None
+
+@app.post("/ticket", response_model=dict[str, int])
+async def create_ticket_route(
+    ticket: TicketRequest, 
+    db_session: Annotated[AsyncSession, Depends(get_db_session)]
+):
+    ticket_id = await create_ticket(
+        db_session,
+        ticket.show,
+        ticket.user,
+        ticket.price,
+    )
+    return {"ticket_id": ticket_id}
