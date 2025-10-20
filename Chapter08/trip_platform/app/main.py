@@ -3,7 +3,8 @@ from typing import Annotated
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.dependencies import time_range, select_category, check_coupon_validity
+from dependencies import time_range, select_category, check_coupon_validity
+from middleware import ClientInfoMiddleware
 
 app = FastAPI(
     title="Advanced Featurec and Best Practies",
@@ -12,11 +13,12 @@ app = FastAPI(
 )
 
 app.add_middleware(
+    ClientInfoMiddleware,
     CORSMiddleware,
-    allow_origins="*",
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods="*",
-    allow_headers="*"
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
 
 @app.get("/v1/trips")
