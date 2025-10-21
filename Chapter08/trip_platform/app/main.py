@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from dependencies import time_range, select_category, check_coupon_validity
 from middleware import ClientInfoMiddleware
+from internationalization import router as i18n_router
 
 app = FastAPI(
     title="Advanced Featurec and Best Practies",
@@ -12,13 +13,17 @@ app = FastAPI(
     version="0.0.1",
 )
 
+app.include_router(i18n_router)
+
 app.add_middleware(
     ClientInfoMiddleware,
+)
+app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
 @app.get("/v1/trips")
