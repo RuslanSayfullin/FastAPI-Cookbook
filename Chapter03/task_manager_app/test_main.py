@@ -1,15 +1,15 @@
-from confest import TEST_TASKS
+from conftest import TEST_TASKS
 from fastapi.testclient import TestClient
 
 from main import app
-from oprerations import read_all_tasks, read_task
+from operations import read_all_tasks, read_task
 
 client = TestClient(app)
 
 def test_endpoint_get_tasks():
     response = client.get("/tasks")
     assert response.status_code == 200
-    assert response.json() == TESK_TASKS
+    assert response.json() == TEST_TASKS
 
 def test_endpoint_get_task():
     response=client.get("task/1")
